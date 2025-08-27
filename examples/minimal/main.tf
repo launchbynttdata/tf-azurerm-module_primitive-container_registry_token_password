@@ -63,10 +63,8 @@ module "scope_map" {
 }
 
 module "token" {
-  source = "git::https://github.com/launchbynttdata/tf-azurerm-module_primitive-container_registry_token.git?ref=feature!/init"
-  # Replace this source once the token module is published
-  # source  = "terraform.registry.launch.nttdata.com/module_primitive/container_registry_token/azurerm"
-  # version = "~> 1.0"
+  source  = "terraform.registry.launch.nttdata.com/module_primitive/container_registry_token/azurerm"
+  version = "~> 1.0"
 
   name                    = module.resource_names["token"][var.resource_names_strategy]
   resource_group_name     = module.resource_group.name
