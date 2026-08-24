@@ -1,6 +1,7 @@
 package testimpl
 
 import (
+	"context"
 	"os"
 	"os/exec"
 	"testing"
@@ -17,10 +18,10 @@ func TestComposableComplete(t *testing.T, ctx types.TestContext) {
 		t.Fatal("ARM_SUBSCRIPTION_ID environment variable is not set")
 	}
 
-	registryName := terraform.Output(t, ctx.TerratestTerraformOptions(), "container_registry_name")
-	tokenName := terraform.Output(t, ctx.TerratestTerraformOptions(), "token_name")
-	password1 := terraform.Output(t, ctx.TerratestTerraformOptions(), "password1")
-	password2 := terraform.Output(t, ctx.TerratestTerraformOptions(), "password2")
+	registryName := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "container_registry_name")
+	tokenName := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "token_name")
+	password1 := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "password1")
+	password2 := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "password2")
 
 	t.Run("LogInWithPassword1", func(t *testing.T) {
 		// Execute Azure CLI login command
